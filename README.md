@@ -1,6 +1,6 @@
 <img width="350" height="350" alt="ogs-logo2" src="https://github.com/user-attachments/assets/1df5c584-8b1c-49e3-a19a-1947095c4529" />
 
-# Open Grand Strategy 
+# Open Grand Strategy C#
 OpenGS is a open-source 3D Grand Strategy Map built to emulate the core methodology of Paradox-style maps within the Godot Game Engine.
 The project is covered by the MIT licence, and thus is free for anyone to use for commercial and private projects.
 
@@ -19,3 +19,5 @@ The creation is documented on the [YouTube Tutorial Series](https://www.youtube.
 
 ## Delivered and maintained by 
 <img width="350" height="350" alt="gsi-logo" src="https://github.com/user-attachments/assets/e7210566-7997-4d82-845e-48f249d439a0" />
+
+## C# Fork of the Original Project is Maintained By: Dustin Jackson/JDSweet
