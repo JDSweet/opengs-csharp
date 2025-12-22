@@ -20,4 +20,4 @@ The creation is documented on the [YouTube Tutorial Series](https://www.youtube.
 ## Delivered and maintained by 
 <img width="350" height="350" alt="gsi-logo" src="https://github.com/user-attachments/assets/e7210566-7997-4d82-845e-48f249d439a0" />
 
-##C# Fork of the Original Project is Maintained By: Dustin Jackson/JDSweet
+## C# Fork of the Original Project is Maintained By: Dustin Jackson/JDSweet
