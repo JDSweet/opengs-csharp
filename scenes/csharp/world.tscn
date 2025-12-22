@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bosh03kaa0mb2"]
+
+[ext_resource type="PackedScene" uid="uid://bxdq5d0stjb6o" path="res://scenes/csharp/main.tscn" id="1_aw2yp"]
+[ext_resource type="Script" uid="uid://cvpw5foobvhdy" path="res://src/csharp/WorldDatabase.cs" id="1_vfkjq"]
+
+[node name="GameInstance" type="Node3D"]
+
+[node name="WorldDatabase" type="Node3D" parent="."]
+script = ExtResource("1_vfkjq")
+
+[node name="Main" parent="WorldDatabase" instance=ExtResource("1_aw2yp")]
+
+[node name="SubViewport" type="SubViewport" parent="."]

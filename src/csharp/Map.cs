@@ -129,6 +129,8 @@ public partial class Map : StaticBody3D
 
     private List<Color> previouslySelectedProvinces = new();
 
+    private Color oceanColor = new Color(0f, 0f, 80f / 255f);
+
     private enum MapMode { POLITICAL, IDEOLOGY }
 
     public override void _Ready()
@@ -206,6 +208,22 @@ public partial class Map : StaticBody3D
                 colorMapPolitical.SetPixel(x, y + 100, controllerColor);
                 colorMapIdeology.SetPixel(x, y, ownerIdeologyColor);
                 colorMapIdeology.SetPixel(x, y + 100, controllerIdeologyColor);
+            }
+
+            else
+            {
+                if (province.Type == "sea" || province.Type == "lake")
+                {
+                    var ownerColor = oceanColor;
+                    var controllerColor = oceanColor;
+                    var ownerIdeologyColor = oceanColor;
+                    var controllerIdeologyColor = oceanColor;
+
+                    colorMapPolitical.SetPixel(x, y, ownerColor);
+                    colorMapPolitical.SetPixel(x, y + 100, controllerColor);
+                    colorMapIdeology.SetPixel(x, y, ownerIdeologyColor);
+                    colorMapIdeology.SetPixel(x, y + 100, controllerIdeologyColor);
+                }
             }
         }
     }
