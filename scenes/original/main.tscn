@@ -1,0 +1,62 @@
+[gd_scene load_steps=13 format=3 uid="uid://b6hm5mv4x2n7f"]
+
+[ext_resource type="Script" uid="uid://5td4ffqk5up" path="res://src/gdscript/main.gd" id="1_85g3d"]
+[ext_resource type="Texture2D" uid="uid://cyh2q6jkvokjn" path="res://map/map_data/ProvinceMap.bmp" id="2_choun"]
+[ext_resource type="PackedScene" uid="uid://c8ptbx1watnwc" path="res://scenes/original/player.tscn" id="3_ya4ey"]
+[ext_resource type="Script" uid="uid://dfmvdnkedph4g" path="res://src/gdscript/country_importer.gd" id="4_eb6dy"]
+[ext_resource type="Script" uid="uid://c4vggacrty230" path="res://src/gdscript/province_importer.gd" id="5_trceg"]
+[ext_resource type="Script" uid="uid://cop0wv5f1ngy0" path="res://src/gdscript/state_importer.gd" id="6_a8y0u"]
+[ext_resource type="PackedScene" uid="uid://cgerfy3y3klhk" path="res://scenes/original/map.tscn" id="7_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://5arm34pep1aj" path="res://scenes/original/province_selected.tscn" id="8_jbj1t"]
+[ext_resource type="PackedScene" uid="uid://cdy1220h7wcq3" path="res://scenes/original/map_modes.tscn" id="9_muem4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wdj6m"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_l8qe7"]
+sky_material = SubResource("ProceduralSkyMaterial_wdj6m")
+
+[sub_resource type="Environment" id="Environment_m1504"]
+background_mode = 2
+sky = SubResource("Sky_l8qe7")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_85g3d")
+province_map = ExtResource("2_choun")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_m1504")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("3_ya4ey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 298.085, -50, 35.765)
+camera_move_speed = 50.0
+camera_zoom_speed = 316.0
+camera_zoom_min = 5.0
+camera_zoom_max = 150.0
+
+[node name="Countries" type="Node" parent="."]
+script = ExtResource("4_eb6dy")
+
+[node name="Provinces" type="Node" parent="."]
+script = ExtResource("5_trceg")
+
+[node name="States" type="Node" parent="."]
+script = ExtResource("6_a8y0u")
+
+[node name="Map" parent="." instance=ExtResource("7_jkv2x")]
+
+[node name="ProvinceSelected" parent="." instance=ExtResource("8_jbj1t")]
+
+[node name="MapModes" parent="." instance=ExtResource("9_muem4")]
+
+[connection signal="province_selected" from="Player" to="." method="_on_player_province_selected"]
+[connection signal="reparent_provinces" from="States" to="." method="_on_states_reparent_provinces"]
+[connection signal="save_provinces" from="ProvinceSelected" to="Provinces" method="_on_province_selected_save_provinces"]
+[connection signal="map_mode_selected" from="MapModes" to="Map" method="_on_map_modes_map_mode_selected"]

@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://caiqji7gs2y35"]
+
+[ext_resource type="Script" uid="uid://gajthpolcymc" path="res://src/csharp/MapModes.cs" id="1_iecol"]
+
+[node name="MapModes" type="CanvasLayer"]
+script = ExtResource("1_iecol")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -147.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="ButtonPolitical" type="Button" parent="PanelContainer/GridContainer"]
+layout_mode = 2
+text = "Political"
+
+[node name="ButtonIdeology" type="Button" parent="PanelContainer/GridContainer"]
+layout_mode = 2
+text = "Ideology"
+
+[connection signal="button_up" from="PanelContainer/GridContainer/ButtonPolitical" to="." method="OnButtonPoliticalButtonUp"]
+[connection signal="button_up" from="PanelContainer/GridContainer/ButtonIdeology" to="." method="OnButtonIdeologyButtonUp"]

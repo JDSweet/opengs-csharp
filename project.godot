@@ -12,13 +12,17 @@ config_version=5
 
 config/name="Open Grand Strategy"
 config/description="This open-source Grand Strategy game is built to emulate the style made popular by Paradox and similar games."
-run/main_scene="uid://b6hm5mv4x2n7f"
-config/features=PackedStringArray("4.5", "Forward Plus")
+run/main_scene="uid://bxdq5d0stjb6o"
+config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Globals="*res://scripts/globals.gd"
+Globals="*res://src/gdscript/globals.gd"
+
+[dotnet]
+
+project/assembly_name="Open Grand Strategy"
 
 [file_customization]
 
