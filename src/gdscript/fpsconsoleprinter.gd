@@ -3,6 +3,9 @@ extends Node
 const TIMER_LIMIT = 2.0
 var timer = 0.0
 
+func _ready():
+	pass
+
 func _process(delta):
 	timer += delta
 	if timer > TIMER_LIMIT: # Prints every 2 seconds

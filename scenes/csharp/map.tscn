@@ -89,6 +89,8 @@ size = Vector2i(5632, 2112)
 
 [node name="CountryLabels" type="Node" parent="WrapLeftMesh/SubViewport2"]
 
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="WrapLeftMesh"]
+
 [node name="WrapLeftCollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -563.2, 0, 0)
 shape = SubResource("BoxShape3D_lgq1i")
@@ -114,6 +116,8 @@ canvas_item_default_texture_filter = 3
 size = Vector2i(5632, 2112)
 
 [node name="CountryLabels" type="Node" parent="WrapRightMesh/SubViewport2"]
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="WrapRightMesh"]
 
 [node name="WrapRightCollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 563.2, 0, 0)

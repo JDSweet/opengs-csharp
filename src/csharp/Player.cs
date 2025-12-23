@@ -1,4 +1,5 @@
 using Godot;
+using OGS.Map;
 using System;
 
 /*
@@ -268,10 +269,28 @@ public partial class Player : Node3D
 
         if (Input.IsActionPressed("camera_forward")) velocityDirection -= Transform.Basis.Z;
         if (Input.IsActionPressed("camera_backward")) velocityDirection += Transform.Basis.Z;
-        if (Input.IsActionPressed("camera_right")) velocityDirection += Transform.Basis.X;
-        if (Input.IsActionPressed("camera_left")) velocityDirection -= Transform.Basis.X;
+
+        if (Input.IsActionPressed("camera_right"))
+        {
+            velocityDirection += Transform.Basis.X;
+        }
+        if (Input.IsActionPressed("camera_left"))
+        {
+            velocityDirection -= Transform.Basis.X;
+        }
 
         Position += velocityDirection.Normalized() * CameraMoveSpeed * delta;
+
+        if(Position.X < 0)
+        {
+            Position = new Vector3(Map.MapWidth + Position.X, Position.Y, Position.Z);
+            GD.Print("Wrapped X to: " + Position.X);
+        }
+        else if (Position.X > Map.MapWidth)
+        {
+            Position = new Vector3(Position.X - Map.MapWidth, Position.Y, Position.Z);
+            GD.Print("Wrapped X to: " + Position.X);
+        }
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -377,6 +396,7 @@ public partial class Player : Node3D
 
     private void CameraBaseRotateLeftRight(float delta, float dir)
     {
+        //GD.Print("Hello");
         Rotation = new Vector3(Rotation.X, Rotation.Y + dir * CameraRotationSpeed * delta, Rotation.Z);
     }
 
@@ -396,7 +416,27 @@ public partial class Player : Node3D
         if ((currentMousePosition.X < margin) || (currentMousePosition.X > viewportSize.X - margin))
         {
             float panX = currentMousePosition.X > viewportSize.X / 2.0f ? 1 : -1;
-            Translate(new Vector3(panX * delta * CameraAutomaticPanSpeed * zoomFactor, 0, 0));
+            float xPos = Position.X + panX * delta * CameraAutomaticPanSpeed * zoomFactor;
+            //Vector3 newPos = new Vector3(panX * delta * CameraAutomaticPanSpeed * zoomFactor, 0, 0);
+            if(xPos < 0)
+            {
+                xPos = Map.MapWidth + xPos;
+                Position = new Vector3(xPos, Position.Y, Position.Z);
+                GD.Print("Wrapped X to: " + xPos);
+            }
+            else if (xPos > Map.MapWidth)
+            {
+                xPos = xPos - Map.MapWidth;
+                Position = new Vector3(xPos, Position.Y, Position.Z);
+                GD.Print("Wrapped X to: " + xPos);
+            }
+            else
+            {
+                GD.Print("Panning X to: " + xPos);
+                Translate(new Vector3(xPos, 0, 0));
+            }
+            
+            //Translate(new Vector3(panX * delta * CameraAutomaticPanSpeed * zoomFactor, 0, 0));
         }
 
         // Y pan
