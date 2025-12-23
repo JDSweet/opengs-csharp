@@ -4,7 +4,6 @@
 
 [node name="Player" type="Node3D"]
 script = ExtResource("1_lusy3")
-CameraZoomMin = 0.0
 
 [node name="CameraSocket" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0871558, 0.996195, 0, -0.996195, 0.0871558, 0, 50, 0)

@@ -9,5 +9,3 @@
 script = ExtResource("1_vfkjq")
 
 [node name="Main" parent="WorldDatabase" instance=ExtResource("1_aw2yp")]
-
-[node name="SubViewport" type="SubViewport" parent="."]

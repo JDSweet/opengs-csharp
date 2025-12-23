@@ -66,3 +66,55 @@ size = Vector2i(5632, 2112)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_lgq1i")
+
+[node name="WrapLeftMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -563.2, 0, 0)
+mesh = SubResource("PlaneMesh_4hjbm")
+skeleton = NodePath("../MeshInstance3D")
+surface_material_override/0 = SubResource("ShaderMaterial_lgq1i")
+
+[node name="SubViewport" type="SubViewport" parent="WrapLeftMesh"]
+canvas_cull_mask = 4294967293
+size = Vector2i(5632, 2112)
+
+[node name="Sprite2D" type="Sprite2D" parent="WrapLeftMesh/SubViewport"]
+material = ExtResource("5_1us0v")
+texture = ExtResource("4_l8rgf")
+centered = false
+
+[node name="SubViewport2" type="SubViewport" parent="WrapLeftMesh"]
+transparent_bg = true
+canvas_item_default_texture_filter = 3
+size = Vector2i(5632, 2112)
+
+[node name="CountryLabels" type="Node" parent="WrapLeftMesh/SubViewport2"]
+
+[node name="WrapLeftCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -563.2, 0, 0)
+shape = SubResource("BoxShape3D_lgq1i")
+
+[node name="WrapRightMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 563.2, 0, 0)
+mesh = SubResource("PlaneMesh_4hjbm")
+skeleton = NodePath("../WrapLeftMesh")
+surface_material_override/0 = SubResource("ShaderMaterial_lgq1i")
+
+[node name="SubViewport" type="SubViewport" parent="WrapRightMesh"]
+canvas_cull_mask = 4294967293
+size = Vector2i(5632, 2112)
+
+[node name="Sprite2D" type="Sprite2D" parent="WrapRightMesh/SubViewport"]
+material = ExtResource("5_1us0v")
+texture = ExtResource("4_l8rgf")
+centered = false
+
+[node name="SubViewport2" type="SubViewport" parent="WrapRightMesh"]
+transparent_bg = true
+canvas_item_default_texture_filter = 3
+size = Vector2i(5632, 2112)
+
+[node name="CountryLabels" type="Node" parent="WrapRightMesh/SubViewport2"]
+
+[node name="WrapRightCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 563.2, 0, 0)
+shape = SubResource("BoxShape3D_lgq1i")

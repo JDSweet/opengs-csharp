@@ -52,6 +52,13 @@ func create_color_map() -> void:
 			var controller_ideology_color :Color = province.province_controller.ideology_color
 			color_map_ideology.set_pixel(x,y,owner_ideology_color)
 			color_map_ideology.set_pixel(x,y+100,controller_ideology_color)
+		if province.type == "sea" or province.type == "lake":
+			#print("sea")
+			var col = Color(0, 0.0, 0.5, 1.0);
+			color_map_political.set_pixel(x,y,col)
+			color_map_political.set_pixel(x,y+100,col)
+			color_map_ideology.set_pixel(x, y, col)
+			color_map_ideology.set_pixel(x, y+100, col)
 
 func update_color_map(input_color:Color, output_color:Color, offset:int) -> void:
 	var lookup = province_color_to_lookup.get(input_color,null)

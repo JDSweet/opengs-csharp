@@ -237,7 +237,7 @@ public partial class Player : Node3D
     private bool cameraCanZoom = true;
     private bool cameraCanAutomaticPan = false;
     private bool cameraCanRotateBase = true;
-    private bool cameraCanRotateSocketX = true;
+    private bool cameraCanRotateSocketX = false;
     private bool cameraCanRotateByMouseOffset = true;
 
     // Internal flags

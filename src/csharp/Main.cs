@@ -28,8 +28,27 @@ public partial class Main : Node3D
     [Export]
     public Texture2D ProvinceMap { get; set; }
 
-    public void OnPlayerProvinceSelected(Vector2 coordinates)
+    public SubViewport WrapViewport { get; set; }
+
+    public ViewportTexture WorldWrapTexture { get; set; }
+
+    public void _Ready()
     {
+        
+    }
+
+    public void OnPlayerProvinceSelected(Vector2 coords)
+    {
+        float rx = 0, ry = 0;
+        if(coords.X < 0)
+            rx = Map.MapWidth + coords.X;
+        if(coords.X > Map.MapWidth)
+            rx = coords.X - Map.MapWidth;
+        if(coords.X >= 0 && coords.X <= Map.MapWidth)
+            rx = coords.X;
+        Vector2 coordinates = new Vector2(rx, coords.Y);
+        GD.Print(coordinates.ToString());
+
         var provinceColor = ProvinceMap.GetImage().GetPixel((int)(coordinates.X * 10), (int)(coordinates.Y * 10));
         var selectedProvince = GetNode<ProvinceImporter>("Provinces").colorToProvince[provinceColor];
         GD.Print(selectedProvince);

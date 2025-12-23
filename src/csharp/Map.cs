@@ -129,7 +129,12 @@ public partial class Map : StaticBody3D
 
     private List<Color> previouslySelectedProvinces = new();
 
-    private Color oceanColor = new Color(0f, 0f, 80f / 255f);
+    private Color oceanColor = new Color(0f, 0f, 100f / 255f);
+
+    private MeshInstance3D mainMapMeshInstance;
+
+    public static float MapWidth = 1f;
+    public static float MapHeight = 0.5f;
 
     private enum MapMode { POLITICAL, IDEOLOGY }
 
@@ -138,6 +143,15 @@ public partial class Map : StaticBody3D
         mapMaterial2D = GD.Load<ShaderMaterial>("res://map/shaders/map2D.tres");
         colorMapPolitical = Image.CreateEmpty(256, 256, false, Image.Format.Rgb8);
         colorMapIdeology = Image.CreateEmpty(256, 256, false, Image.Format.Rgb8);
+
+        this.mainMapMeshInstance = (MeshInstance3D)FindChild("MeshInstance3D");
+        if(mainMapMeshInstance.Mesh is PlaneMesh planeMesh)
+        {
+            MapWidth = planeMesh.Size.X;
+            MapHeight = planeMesh.Size.Y;
+            GD.Print(MapWidth);
+            GD.Print(MapHeight);
+        }
 
         CreateLookupTexture();
         CreateColorMap();
@@ -299,6 +313,7 @@ public partial class Map : StaticBody3D
     private void CreateCountryLabels()
     {
         var countryLabelTemplate = GD.Load<PackedScene>("res://scenes/csharp/country_label_template.tscn");
+        //var countryLabelsNode = GetNode<Node>("MeshInstance3D/SubViewport2/CountryLabels");
         var countryLabelsNode = GetNode<Node>("MeshInstance3D/SubViewport2/CountryLabels");
         GD.Print($"Country Count: {Globals.TagToCountry.Count}");
         foreach (var country in Globals.TagToCountry.Values)

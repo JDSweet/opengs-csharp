@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bxdq5d0stjb6o"]
+[gd_scene load_steps=14 format=3 uid="uid://bxdq5d0stjb6o"]
 
 [ext_resource type="Script" uid="uid://bj7mfdhfc18gt" path="res://src/csharp/Main.cs" id="1_0eg0n"]
 [ext_resource type="Texture2D" uid="uid://cyh2q6jkvokjn" path="res://map/map_data/ProvinceMap.bmp" id="2_15hcr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bmdfy7gwcn6hh" path="res://src/csharp/CountryImporter.cs" id="4_et5m3"]
 [ext_resource type="Script" uid="uid://cclhhbg3g01we" path="res://src/csharp/ProvinceImporter.cs" id="5_xivxa"]
 [ext_resource type="Script" uid="uid://bhpoc4445tta1" path="res://src/csharp/StateImporter.cs" id="6_61hlo"]
+[ext_resource type="Script" uid="uid://ckceulcg82i7e" path="res://src/gdscript/fpsconsoleprinter.gd" id="10_0eg0n"]
 [ext_resource type="PackedScene" uid="uid://8bljyua7jqtb" path="res://scenes/csharp/map.tscn" id="10_15hcr"]
 [ext_resource type="PackedScene" uid="uid://2vvjvlfhjp62" path="res://scenes/csharp/province_selected.tscn" id="10_jn8tt"]
 [ext_resource type="PackedScene" uid="uid://caiqji7gs2y35" path="res://scenes/csharp/map_modes.tscn" id="11_0eg0n"]
@@ -36,9 +37,9 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("3_jn8tt")]
 CameraMoveSpeed = 115.0
-CameraZoomSpeed = 95.0
+CameraZoomSpeed = 80.0
 CameraZoomMin = -50.0
-CameraZoomMax = 560.0
+CameraZoomMax = 330.0
 
 [node name="Countries" type="Node" parent="."]
 script = ExtResource("4_et5m3")
@@ -54,6 +55,9 @@ script = ExtResource("6_61hlo")
 [node name="ProvinceSelected" parent="." instance=ExtResource("10_jn8tt")]
 
 [node name="MapModes" parent="." instance=ExtResource("11_0eg0n")]
+
+[node name="FPSTimer" type="Node" parent="."]
+script = ExtResource("10_0eg0n")
 
 [connection signal="ProvinceSelected" from="Player" to="." method="OnPlayerProvinceSelected"]
 [connection signal="ReparentProvinces" from="States" to="." method="OnStatesReparentProvinces"]
