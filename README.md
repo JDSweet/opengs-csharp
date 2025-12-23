@@ -10,6 +10,7 @@ The project is covered by the MIT licence, and thus is free for anyone to use fo
 - Map in 3D environment
 - Smooth borders
 - Dynamic country name labels
+- Dynamic World Wrap (Partially Implemented)
 
 ## Showcase
 <img width="1280" height="720" alt="Thumbnail" src="https://github.com/user-attachments/assets/d6a64a2a-8b16-45ad-8275-75f1f26f96a5" />
